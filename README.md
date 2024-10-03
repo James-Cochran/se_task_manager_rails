@@ -21,11 +21,11 @@ Here is a high level image of the MVC design pattern. You will learn in this [In
 
 In this tutorial we're building an API. APIs are used to provide data to an external system when they request it, and the APIs we'll see will mostly serve up data in the form of JSON. JSON is a popular data format that looks like a Ruby hash.
 
-Throughout the module, we'll talk through some conventions and best practices, but for now - we'd like for you to follow along with this tutorial. We highly recommend **not** copying and pasting the code in this tutorial. It's to your advantage to type each line of code on your own.
+Throughout the module, we'll talk through some conventions and best practices, but for now - we'd like for you to follow along with this tutorial. We highly recommend **not** copying and pasting the code in this tutorial. It's to your advantage to type each line of code on your own.
 
 ## Getting Configured
 
-Before creating our new Task Manager app, let's make sure we are all on the same version of Rails. For this tutorial, you will want to be running Rails 7.1.3. To check which version of rails you have installed, run `$ rails -v`. If you see any version other than 7.1.3, you will need to follow [these instructions](./rails_uninstall.md) to get the correct version installed.
+Before creating our new Task Manager app, let's make sure we are all on the same version of Rails. For this tutorial, you will want to be running Rails 7.1.3. To check which version of rails you have installed, run `$ rails -v`. If you see any version other than 7.1.3, you will need to follow [these instructions](./rails_uninstall.md) to get the correct version installed.
 
 After confirming that you are running the correct version of Rails, we are ready to get started!
 
@@ -33,9 +33,9 @@ To create your Rails app, navigate to your 2module directory and run the followi
 
 `$ rails new task_manager -T -d="postgresql" --api`
 
-Let's break down this command to better understand what is happening. `rails new` is the command to create a new Rails app - this will create *a lot* of directories and files; we will explore this file structure in a moment. `task_manager` is going to be the name of the directory in which our Rails app lives and is, essentially, the name of our application. `-T` tells Rails that we are not going to use its default testing suite. We will be using RSpec as our testing framework. `-d="postgresql"` tells Rails that we will be using a Postgresql database; Rails can handle many different databases, but this is the one we will be using in Mod 2. `--api` tells rails that we want to build an API instead of an application that also has a frontend.
+Let's break down this command to better understand what is happening. `rails new` is the command to create a new Rails app - this will create *a lot* of directories and files; we will explore this file structure in a moment. `task_manager` is going to be the name of the directory in which our Rails app lives and is, essentially, the name of our application. `-T` tells Rails that we are not going to use its default testing suite. We will be using RSpec as our testing framework. `-d="postgresql"` tells Rails that we will be using a Postgresql database; Rails can handle many different databases, but this is the one we will be using in Mod 2. `--api` tells rails that we want to build an API instead of an application that also has a frontend.
 
-Now that we have created our rails app, let's `cd task_manager` and explore some of the structure that Rails builds out for us.
+Now that we have created our rails app, let's `cd task_manager` and explore some of the structure that Rails builds out for us.
 
 ## Project Folder Structure
 
@@ -43,11 +43,11 @@ Now that we have created our rails app, let's `cd task_manager` and explore so
 
 Taking a look at the files that Rails creates can be a bit overwhelming at first, but don't worry - this tutorial will only touch on a handful of directories! The top level directories that we are concered with are:
 
-- *app* - This is where we configure Models and Controllers.
-- *config* - Inside this directory, in the `routes.rb` file is where we will tell our Rails app which HTTP requests to respond to.
-- *db* - Where our database structure will be set up.
+- *app* - This is where we configure Models and Controllers.
+- *config* - Inside this directory, in the `routes.rb` file is where we will tell our Rails app which HTTP requests to respond to.
+- *db* - Where our database structure will be set up.
 
-In addition to these directories, we will also be dealing with our Gemfile, which is where we will tell Rails about any other gems we might need to run our app. For our task manager we will be adding just one gem to our Gemfile. Open your gemfile and add `pry` to the `:development, :test` group - your Gemfile should now look like this:
+In addition to these directories, we will also be dealing with our Gemfile, which is where we will tell Rails about any other gems we might need to run our app. For our task manager we will be adding just one gem to our Gemfile. Open your gemfile and add `pry` to the `:development, :test` group - your Gemfile should now look like this:
 
 ```ruby
 source "http://rubygems.org"
@@ -112,7 +112,7 @@ Any time we update our Gemfile, we will need to tell our application to install 
 $ bundle install
 ```
 
-Great - now we can use `binding.pry` anywhere in our app to debug as we go!
+Great - now we can use `binding.pry` anywhere in our app to debug as we go!
 
 ## Database Set-Up
 
@@ -145,7 +145,7 @@ To create a migration that will send instructions to create a tasks table to our
 $ rails generate migration CreateTasks title:string description:string
 ```
 
-In this command, we are telling Rails to generate a migration file that will create a tasks table in our database with two columns - title and description. To see the migration that Rails created, open your `db/migrate` directory, and you should have a file in there that is called something like `db/migrate/20190414173402_create_tasks.rb`. Open that file and you will see the following:
+In this command, we are telling Rails to generate a migration file that will create a tasks table in our database with two columns - title and description. To see the migration that Rails created, open your `db/migrate` directory, and you should have a file in there that is called something like `db/migrate/20190414173402_create_tasks.rb`. Open that file and you will see the following:
 
 ```ruby
 class CreateTasks < ActiveRecord::Migration[7.1]
@@ -207,13 +207,13 @@ How can I write SQL to insert data into this table?
 id | title | description | created_at | updated_at
 ```
 
-To exit the psql session, enter the command `exit`
+To exit the psql session, enter the command `exit`
 
 ## Getting the App Running
 
 Now that we've set up our database, it's time to get our server up and running and ready for HTTP requests. To do this, run either
 
-`rails server` or `rails s`
+`rails server` or `rails s`
 
 You should see something like this:
 
@@ -232,7 +232,7 @@ Puma starting in single mode...
 Use Ctrl-C to stop
 ```
 
-Navigate to [http://localhost:3000/](http://localhost:3000/) and you should see some Rails magic!
+Navigate to [http://localhost:3000/](http://localhost:3000/) and you should see some Rails magic!
 
 Now, let's take a look back at your terminal and walk through what just happened.
 
@@ -244,9 +244,9 @@ Processing by Rails::WelcomeController#index as HTML
 Completed 200 OK in 13ms (Views: 4.9ms | ActiveRecord: 0.0ms | Allocations: 5094)
 ```
 
-On the first line, you are seeing a snapshot of the HTTP request that was received by our server when we navigated to localhost:3000 - `GET "/"`. This is basically telling us that our application received a request for the information that lives at a certain address.
+On the first line, you are seeing a snapshot of the HTTP request that was received by our server when we navigated to localhost:3000 - `GET "/"`. This is basically telling us that our application received a request for the information that lives at a certain address.
 
-On the last line, we can see a snapshot of the response that our server sent back to the browser `Completed 200 OK`. Meaning, we received a request, were able to process that request and succesfully send back a response. The response is what contains the information that allows the browser to render the default page for your Rails app!
+On the last line, we can see a snapshot of the response that our server sent back to the browser `Completed 200 OK`. Meaning, we received a request, were able to process that request and succesfully send back a response. The response is what contains the information that allows the browser to render the default page for your Rails app!
 
 ## Returning All Tasks
 
@@ -279,7 +279,7 @@ end
 
 This line that we added is telling our application that anytime we receive an HTTP GET request for the URI '/api/v1/tasks', we should perform the index action within our tasks controller.
 
-Go back to your browser and refresh the page - you should now be seeing an error telling you that you have a `Routing Error`; specifically, that you have an `uninitialized constant Api::V1::TasksController`. This is a good thing; at this point, we have told our application which controller action to perform when this request is received, but we haven't created that controller (or the action) yet. So, let's go do that.
+Go back to your browser and refresh the page - you should now be seeing an error telling you that you have a `Routing Error`; specifically, that you have an `uninitialized constant Api::V1::TasksController`. This is a good thing; at this point, we have told our application which controller action to perform when this request is received, but we haven't created that controller (or the action) yet. So, let's go do that.
 
 ### Adding the Controller
 
@@ -315,7 +315,7 @@ We're getting close! The last thing we need to do is return the tasks stored in 
 
 ### Creating our Model
 
-In order to follow MVC conventions, we are going to create this Task class in a `app/models/task.rb` file. In that file, create a Task class that looks like this:
+In order to follow MVC conventions, we are going to create this Task class in a `app/models/task.rb` file. In that file, create a Task class that looks like this:
 
 **app/models/task.rb**
 
@@ -325,7 +325,7 @@ class Task < ApplicationRecord
 end
 ```
 
-Why inherit from `ApplicationRecord`? This Task class that we are creating is meant to be a very specific and specialized class that we refer to as a Model. The purpose of Models is to create objects based on records that exist in a database. Rails give us some methods that we can use to help in this creation and we inherit those methods from `ApplicationRecord`. Some of the methods that we inherit are `all`, `find` and `create`. These methods are inherited even when our class is totally empty. We're going to make use of the `all` method first.
+Why inherit from `ApplicationRecord`? This Task class that we are creating is meant to be a very specific and specialized class that we refer to as a Model. The purpose of Models is to create objects based on records that exist in a database. Rails give us some methods that we can use to help in this creation and we inherit those methods from `ApplicationRecord`. Some of the methods that we inherit are `all`, `find` and `create`. These methods are inherited even when our class is totally empty. We're going to make use of the `all` method first.
 
 ### Returning Tasks from the Database
 
@@ -639,7 +639,25 @@ Congrats! You have finished your first Rails API that can handle full CRUD funct
 ## Checks for Understanding
 
 1. Define CRUD.
-1. Define MVC.
-1. What two files would you need to create/modify for a Rails application to respond to a GET request to /api/v1/tasks, assuming you have a Task model.
-1. What are params? Where do they come from?
-1. What is the purpose of a serializer?
+    CRUD is tha basic and pretty much manditory operational structure for any and all
+    applications.  It stands for Create, Read, Update, and Destroy.  It allows a user
+    to Create (create action in the controller) new records to a database, 
+    Read (index and show actions in the controller) existing records in a database,
+    Update (update action in the controller or put and patch routes) so modify either part of or a entire record in a database,
+    Destroy (destroy action in the controller) deletes or removes a record in a database.
+
+2. Define MVC.
+    MVC is the model, view, controller architecture design.  It structures an application to have a 
+    controller recieve user input determine what is needed from the database, double checks that, and sends it on the path back to the user.
+    The Model, actually interacts with the database.  After receiving the specifics from the controller, it retrieves the raw data, and performs any logic needed to give back just the pertinent parts to the controller.
+    The view takes the retrieved and parsed information from the controller and renders it into HTML to return back to the client and user.
+
+3. What two files would you need to create/modify for a Rails application to respond to a GET request to /api/v1/tasks, assuming you have a Task model.
+     You would need a Routes file, to recieve the request and direct to the appropriate Controller file.  
+     The tasks_controller file will perform the appropriate get action (Create or Update) and tell the model exactly what task data it needs to makr or what in that data to edit  
+
+4. What are params? Where do they come from?
+    Params are specific query identifiers from the user.  So an :id, or a :title, etc
+
+5. What is the purpose of a serializer?
+    The seriallizer takes the returned data that the controller requsted from the model, and formats it into JSON.  A specified format that can be sent to the front end portion of the app, that Javascript can understand.  Javascript then does what it needs to before applying the HTML to be viewed by the user.
